@@ -48,11 +48,11 @@ public:
   File(const File&) = delete;
   File& operator=(const File&) = delete;
   File(File&& other) {
-    m_file = other.m_file;
-    other.m_file = nullptr;
+    *this = std::move(other);
   }
   File& operator=(File&& other) {
-    *this = File{std::move(other)};
+    m_file = other.m_file;
+    other.m_file = nullptr;
     return *this;
   }
 
